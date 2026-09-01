@@ -10,15 +10,13 @@ public class ProyectoMain {
         System.out.print("Ingrese la ruta del archivo: ");
         String caminoEntrada = scanner.nextLine();
 
-        ImageBuffer.imageBuffer buffer = null;
-
         String extension = caminoEntrada.substring(caminoEntrada.lastIndexOf('.') + 1).toLowerCase();
 
         if (extension.equals("jpg") || extension.equals("png")) {
-            buffer = new AdapterImagenJVM(caminoEntrada);
+            ImageBuffer.imageBuffer buffer = new AdapterImagenJVM(caminoEntrada);
 
         } else if (extension.equals("pgm") || extension.equals("txt")) {
-            buffer = new AdapterImagenPGM(caminoEntrada);
+            ImageBuffer.imageBuffer buffer = new AdapterImagenPGM(caminoEntrada);
 
         } else {
             System.out.println("Formato no soportado.");
