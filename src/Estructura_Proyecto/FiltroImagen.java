@@ -20,10 +20,10 @@ public class FiltroImagen extends RecursiveAction {
     //implementar el metodo abstracto compute() de la clase RecursiveAction
     @Override
     protected void compute() {
-        if((fin - inicio)<=UMBRAL){
+        if((fin - inicio) <= UMBRAL){
             aplicarFiltro();
         }else{
-            int mitad = inicio + ((fin - inicio)/2);
+            int mitad = inicio + ((fin - inicio) / 2);
             FiltroImagen tareaIzquierda = new FiltroImagen(pixeles, inicio, mitad, filtro);
             FiltroImagen tareaDerecha = new FiltroImagen(pixeles, mitad, fin, filtro);
             invokeAll(tareaIzquierda, tareaDerecha);
@@ -53,9 +53,9 @@ public class FiltroImagen extends RecursiveAction {
                 case BRILLO:
                 //Subir el brillo a cada color intentando no superar el maximo de 255
                 //Como caso simple aumentamos el brillo en 40 unidades (solo si no supera el maximo de 255)
-                    r = Math.min(255, (r+40));
-                    g = Math.min(255, (g+40));
-                    b = Math.min(255, (b+40));
+                    r = Math.min(255, (r + 40));
+                    g = Math.min(255, (g + 40));
+                    b = Math.min(255, (b + 40));
                     break;
             }
             //Reconstruimos el valor de color con manipulacion de bits

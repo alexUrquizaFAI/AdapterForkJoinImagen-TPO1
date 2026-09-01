@@ -55,6 +55,7 @@ public class AdapterImagenJVM implements ImageBuffer.imageBuffer {
         return this.altura;
     }
 
+    @Override
     public void guardar(String rutaSalida) throws Exception {
         //Tomamos el arreglo de pixeles ya modificado y lo devolvemos a la imagen original
         this.imagenOriginal.setRGB(0, 0, this.ancho, this.altura, null, 0, this.ancho);
