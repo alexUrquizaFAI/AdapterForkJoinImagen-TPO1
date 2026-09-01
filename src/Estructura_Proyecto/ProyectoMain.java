@@ -1,4 +1,5 @@
 package Estructura_Proyecto;
+
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveAction;
 import java.util.Scanner;
@@ -12,11 +13,11 @@ public class ProyectoMain {
 
         String extension = caminoEntrada.substring(caminoEntrada.lastIndexOf('.') + 1).toLowerCase();
 
-        // CORRECCIÓN: Declaramos la variable 'buffer' fuera del if para que sea accesible en todo el método
+
         ImageBuffer.imageBuffer buffer = null;
 
         if (extension.equals("jpg") || extension.equals("png")) {
-            // Asignamos el valor sin volver a declarar el tipo
+
             buffer = new AdapterImagenJVM(caminoEntrada); 
 
         } else if (extension.equals("pgm") || extension.equals("txt")) {
@@ -27,7 +28,7 @@ public class ProyectoMain {
             seguir = false;
         }
 
-        if (seguir && buffer != null) { // También añadí una protección extra aquí verificando != null
+        if (seguir && buffer != null) { 
             System.out.println("Ingrese el filtro que desea aplicar: ");
             System.out.println("1. Invertir colores");
             System.out.println("2. Escala de grises");
