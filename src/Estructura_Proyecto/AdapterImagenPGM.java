@@ -55,7 +55,7 @@ public class AdapterImagenPGM implements ImageBuffer.imageBuffer {
         String token;
 
         //Verificamos si existe un elemento o palabra(token) para leer
-        while (sc.hasNext() && comentario == "") {
+        while (sc.hasNext() && comentario.isEmpty()) {
 
             token = sc.next();
             
@@ -100,7 +100,7 @@ public class AdapterImagenPGM implements ImageBuffer.imageBuffer {
         int count = 0;
         int argb;
         int gray;
-        
+
         for (int i = 0; i < this.pixeles.length; i++) {
             // Extraer el canal rojo (como es gris, R, G y B son iguales)
             argb = pixeles[i];
