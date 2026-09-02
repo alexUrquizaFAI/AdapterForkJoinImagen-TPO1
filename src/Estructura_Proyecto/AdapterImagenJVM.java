@@ -8,7 +8,7 @@ import java.io.File;
 import javax.imageio.ImageIO;
 
 
-public class AdapterImagenJVM implements ImageBuffer.imageBuffer { 
+public class AdapterImagenJVM implements ImageBuffer { 
     
     //Variable que nos permitira acceder a las propiedades visuales de la imagen
     private BufferedImage imagenOriginal;
@@ -58,7 +58,14 @@ public class AdapterImagenJVM implements ImageBuffer.imageBuffer {
     @Override
     public void guardar(String rutaSalida) throws Exception {
         //Tomamos el arreglo de pixeles ya modificado y lo devolvemos a la imagen original
-        this.imagenOriginal.setRGB(0, 0, this.ancho, this.altura, null, 0, this.ancho);
+        this.imagenOriginal.setRGB(0, 0, this.ancho, this.altura, this.pixeles, 0, this.ancho);
+
+        //Realizamos un procedimiento para que la extraccion sea segura
+        int puntoPos = rutaSalida.lastIndexOf(".");
+        if (puntoPos == -1) {
+            throw new IllegalArgumentException("La ruta de salida debe incluir una extensión (.png, .jpg).");
+        }
+
         //Obtenemos el tipo de archivo, si es png o jpg
         String formato = rutaSalida.substring(rutaSalida.lastIndexOf(".") + 1);
         //Guardamos en el disco

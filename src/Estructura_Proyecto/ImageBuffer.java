@@ -1,9 +1,7 @@
 package Estructura_Proyecto;
 
-public class ImageBuffer {
-    //Interfaz Target (Patron Adapter)
-    public interface imageBuffer {
-
+//Interfaz Target (Patron Adapter)
+public interface ImageBuffer {
         //Arreglo unidimensional de pixeles que representa la imagen
         int[] getPixeles();
         
@@ -15,6 +13,6 @@ public class ImageBuffer {
 
         //Metodo para guardar la imagen en un archivo
         void guardar(String rutaSalida) throws Exception;
-    }
+    
 
 }
