@@ -13,8 +13,7 @@ public class ProyectoMain {
 
         String extension = caminoEntrada.substring(caminoEntrada.lastIndexOf('.') + 1).toLowerCase();
 
-
-        ImageBuffer.imageBuffer buffer = null;
+        ImageBuffer buffer = null;
 
         if (extension.equals("jpg") || extension.equals("png")) {
 

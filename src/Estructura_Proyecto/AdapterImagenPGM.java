@@ -9,7 +9,7 @@ import java.io.PrintWriter;
 //Lo uso para leer un texto
 import java.util.Scanner;
 
-public class AdapterImagenPGM implements ImageBuffer.imageBuffer {
+public class AdapterImagenPGM implements ImageBuffer {
 
     private int[] pixeles;
     private int ancho;
@@ -51,11 +51,11 @@ public class AdapterImagenPGM implements ImageBuffer.imageBuffer {
     }
 
     private String nextValidToken(Scanner sc) {
-        String comentario = "";
+        String resultado = "";
         String token;
 
         //Verificamos si existe un elemento o palabra(token) para leer
-        while (sc.hasNext() && comentario.isEmpty()) {
+        while (sc.hasNext() && resultado.isEmpty()) {
 
             token = sc.next();
             
@@ -63,10 +63,10 @@ public class AdapterImagenPGM implements ImageBuffer.imageBuffer {
             if (token.startsWith("#")) {
                 sc.nextLine();
             } else {
-                comentario = token;
+                resultado = token;
             }
         }
-        return comentario;
+        return resultado;
     }
 
     @Override
