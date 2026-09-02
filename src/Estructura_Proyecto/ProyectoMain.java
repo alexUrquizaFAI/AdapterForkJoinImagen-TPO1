@@ -11,16 +11,20 @@ public class ProyectoMain {
 
         String extension = caminoEntrada.substring(caminoEntrada.lastIndexOf('.') + 1).toLowerCase();
 
-        // CORRECCIÓN: Declaramos la variable 'buffer' fuera del if para que sea accesible en todo el método
+        //Declaramos la variable 'buffer' fuera del if para que sea accesible en todo el método
+        //No sabemos el formato de la imagen, por lo que necesitamos un buffer que se adapte a cada formato
         ImageBuffer buffer = null;
 
         if (extension.equals("jpg") || extension.equals("png")) {
+            //Si el archivo es de formato JPG o PNG, implementamos el AdapterImagenJVM para adaptarlo a nuestro formato interno
             buffer = new AdapterImagenJVM(caminoEntrada);
 
         } else if (extension.equals("pgm") || extension.equals("txt")) {
+            //Si el archivo es de formato PGM, implementamos el AdapterImagenPGM para adaptarlo a nuestro formato interno
             buffer = new AdapterImagenPGM(caminoEntrada);
 
         } else {
+            //Si el archivo no es de formato JPG, PNG o PGM, mostramos un mensaje de error
             System.out.println("Formato no soportado.");
             seguir = false;
         }
@@ -39,13 +43,14 @@ public class ProyectoMain {
             }else {
                 filtro = FiltroImagen.TipoFiltro.BRILLO;
             }
-            
+            //Creamos un pool de hilos para procesar la imagen en paralelo
             ForkJoinPool pool = new ForkJoinPool();
+            //Creamos una tarea para aplicar el filtro a la imagen y la invocamos en el pool de hilos
             pool.invoke(new FiltroImagen(buffer.getPixeles(), 0, buffer.getPixeles().length, filtro));
+            //Guardamos la imagen modificada en un archivo de salida con el mismo formato que el de entrada
             buffer.guardar("resultado." + extension);
             System.out.println("Imagen guardada con éxito como: resultado." + extension);
             scanner.close();
-            
         }
     }
 }
