@@ -22,6 +22,7 @@ public class AdapterImagenPGM implements ImageBuffer {
     public AdapterImagenPGM(String rutaArchivo) throws Exception {
         //Abrimos y leemos el archivo
         Scanner sc = new Scanner(new File(rutaArchivo));
+        //Leemos el primer token del archivo, que debe ser el número mágico "P2" para indicar que es un archivo PGM en formato ASCII
         String numMagico = nextValidToken(sc);
 
         //"P2" nos indica que el archivo es un mapa de grises guardado en formato ASCII
@@ -31,6 +32,7 @@ public class AdapterImagenPGM implements ImageBuffer {
         }
 
         //Leemos el ancho, alto y el valor maximo de gris
+        //parseInt() convierte un String a un int y lo utilizamos para convertir los valores leidos del archivo a enteros
         this.ancho = Integer.parseInt(nextValidToken(sc));
         this.altura = Integer.parseInt(nextValidToken(sc));
         this.valorColorMax = Integer.parseInt(nextValidToken(sc));
@@ -55,11 +57,13 @@ public class AdapterImagenPGM implements ImageBuffer {
         String token;
 
         //Verificamos si existe un elemento o palabra(token) para leer
+        //hasNext() devuelve true si hay un elemento o palabra para leer
         while (sc.hasNext() && resultado.isEmpty()) {
-
+            //sc.next() devuelve el siguiente token del archivo, que es una palabra o elemento separado por espacios o saltos de línea
             token = sc.next();
             
             //Verificamos si la cadena de texto guardado en la variable token comienza con "#"
+            //Si es así, significa que es un comentario y no es un token válido, por lo que debemos ignorarlo y leer el siguiente token
             if (token.startsWith("#")) {
                 sc.nextLine();
             } else {
@@ -86,6 +90,7 @@ public class AdapterImagenPGM implements ImageBuffer {
 
     @Override
     public void guardar(String rutaSalida) throws Exception {
+        //PrintWriter nos permite escribir en un archivo de texto de manera sencilla, ya que nos permite escribir lineas completas y agregar saltos de linea automaticamente
         PrintWriter writer = new PrintWriter(new FileWriter(rutaSalida));
 
         //Escribir en la cabecera PGM

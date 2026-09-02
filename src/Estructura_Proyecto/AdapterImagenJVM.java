@@ -66,6 +66,8 @@ public class AdapterImagenJVM implements ImageBuffer {
         //Obtenemos el tipo de archivo, si es png o jpg
         String formato = rutaSalida.substring(rutaSalida.lastIndexOf(".") + 1);
         //Guardamos en el disco
+        //write() es un metodo estatico de la clase ImageIO que nos permite guardar la imagen en el disco
+        //ImageIO es una clase que nos permite leer y escribir imagenes en diferentes formatos estandar como JPG, PNG, BMP, GIF, etc.
         ImageIO.write(imagenOriginal, formato, new File(rutaSalida));
     }
 }
