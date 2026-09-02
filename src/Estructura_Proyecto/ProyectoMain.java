@@ -5,10 +5,11 @@ public class ProyectoMain {
     public static void main(String[] args) throws Exception {
         //
         Scanner scanner = new Scanner(System.in);
+        //Utilizamos esta variable para controlar si el programa debe continuar o no, dependiendo de si el formato de la imagen es soportado
         boolean seguir = true;
         System.out.print("Ingrese la ruta del archivo: ");
         String caminoEntrada = scanner.nextLine();
-
+        //Esta variable podria ser .jpg, .png o .pgm
         String extension = caminoEntrada.substring(caminoEntrada.lastIndexOf('.') + 1).toLowerCase();
 
         //Declaramos la variable 'buffer' fuera del if para que sea accesible en todo el método
@@ -26,6 +27,7 @@ public class ProyectoMain {
         } else {
             //Si el archivo no es de formato JPG, PNG o PGM, mostramos un mensaje de error
             System.out.println("Formato no soportado.");
+            //Como no sabemos el formato de la imagen, no podemos aplicar filtros a ella
             seguir = false;
         }
          if (seguir && buffer != null) { // También añadí una protección extra aquí verificando != null
@@ -34,13 +36,19 @@ public class ProyectoMain {
             System.out.println("2. Escala de grises");
             System.out.println("3. Subir brillo (40 unidades)");
             int opcion = scanner.nextInt();
+            //Creamos una variable de tipo FiltroImagen.TipoFiltro
+            //Al declaralo de esta manera, esta variable puede tomar cualquiera de los valores definidos en el enum TipoFiltro de la clase FiltroImagen
+            //Debemos declararlo como FiltroImagen.TipoFiltro para que el compilador sepa que estamos haciendo referencia al enum TipoFiltro que está dentro de la clase FiltroImagen
             FiltroImagen.TipoFiltro filtro;
             
             if (opcion == 1) {
+                //Si el usuario elige la opción 1, aplicamos el filtro de invertir colores
                 filtro = FiltroImagen.TipoFiltro.INVERTIR;
             }else if (opcion == 2) {
+                //Si el usuario elige la opción 2, aplicamos el filtro de escala de grises
                 filtro = FiltroImagen.TipoFiltro.ESCALA_GRIS;
             }else {
+                //Si el usuario elige la opción 3, aplicamos el filtro de subir brillo
                 filtro = FiltroImagen.TipoFiltro.BRILLO;
             }
             //Creamos un pool de hilos para procesar la imagen en paralelo

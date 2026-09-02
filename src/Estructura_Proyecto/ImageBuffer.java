@@ -13,6 +13,5 @@ public interface ImageBuffer {
 
         //Metodo para guardar la imagen en un archivo
         void guardar(String rutaSalida) throws Exception;
-    
 
 }
