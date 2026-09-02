@@ -1,6 +1,5 @@
 package Estructura_Proyecto;
 
-
 import java.io.File;
 //Lo uso para escribir en un archivo
 import java.io.FileWriter;
@@ -20,8 +19,10 @@ public class AdapterImagenPGM implements ImageBuffer {
 
     //Se encarga de cargar, validar y adaptar la imagen PGM en nuestro formato interno el cual es el arreglo unidimensional(pixeles)
     public AdapterImagenPGM(String rutaArchivo) throws Exception {
+
         //Abrimos y leemos el archivo
         Scanner sc = new Scanner(new File(rutaArchivo));
+
         //Leemos el primer token del archivo, que debe ser el número mágico "P2" para indicar que es un archivo PGM en formato ASCII
         String numMagico = nextValidToken(sc);
 
@@ -59,6 +60,7 @@ public class AdapterImagenPGM implements ImageBuffer {
         //Verificamos si existe un elemento o palabra(token) para leer
         //hasNext() devuelve true si hay un elemento o palabra para leer
         while (sc.hasNext() && resultado.isEmpty()) {
+            
             //sc.next() devuelve el siguiente token del archivo, que es una palabra o elemento separado por espacios o saltos de línea
             token = sc.next();
             
