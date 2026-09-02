@@ -15,10 +15,10 @@ public class ProyectoMain {
         ImageBuffer buffer = null;
 
         if (extension.equals("jpg") || extension.equals("png")) {
-             buffer = new AdapterImagenJVM(caminoEntrada);
+            buffer = new AdapterImagenJVM(caminoEntrada);
 
         } else if (extension.equals("pgm") || extension.equals("txt")) {
-             buffer = new AdapterImagenPGM(caminoEntrada);
+            buffer = new AdapterImagenPGM(caminoEntrada);
 
         } else {
             System.out.println("Formato no soportado.");
